@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>快手笔 (kuài shǒu bǐ) - The People's Solana Meme</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #0f0025 0%, #1a0040 25%, #14F195 100%);
+            color: white;
+            overflow-x: hidden;
+        }
+
+        .glow {
+            text-shadow: 0 0 20px rgba(20, 241, 149, 0.8), 0 0 40px rgba(148, 0, 255, 0.6);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 60px 20px 40px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .logo {
+            font-size: 5rem;
+            margin-bottom: 10px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        h1 {
+            font-size: 4rem;
+            background: linear-gradient(135deg, #14F195 0%, #9945FF 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+            font-weight: 900;
+            letter-spacing: -2px;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: #14F195;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            color: #C8B5FF;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            line-height: 1.6;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .cta-btn {
+            padding: 18px 40px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cta-primary {
+            background: linear-gradient(135deg, #14F195 0%, #9945FF 100%);
+            color: #0f0025;
+            box-shadow: 0 10px 30px rgba(20, 241, 149, 0.4);
+        }
+
+        .cta-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(20, 241, 149, 0.6);
+        }
+
+        .cta-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 2px solid #14F195;
+            backdrop-filter: blur(10px);
+        }
+
+        .cta-secondary:hover {
+            background: rgba(20, 241, 149, 0.2);
+            transform: translateY(-3px);
+        }
+
+        .story-section {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            padding: 60px 40px;
+            margin: 60px 0;
+            border: 2px solid rgba(20, 241, 149, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .story-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(153, 69, 255, 0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .story-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            color: #14F195;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .story-timeline {
+            display: grid;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .timeline-item {
+            background: rgba(20, 241, 149, 0.1);
+            padding: 25px;
+            border-radius: 20px;
+            border-left: 4px solid #9945FF;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:hover {
+            background: rgba(20, 241, 149, 0.15);
+            transform: translateX(10px);
+        }
+
+        .timeline-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .timeline-title {
+            font-size: 1.3rem;
+            color: #14F195;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .timeline-text {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #E0E0E0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin: 60px 0;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            border: 2px solid rgba(153, 69, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: #14F195;
+            box-shadow: 0 10px 30px rgba(20, 241, 149, 0.3);
+        }
+
+        .stat-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 900;
+            color: #14F195;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: #C8B5FF;
+        }
+
+        .contract-section {
+            background: rgba(153, 69, 255, 0.1);
+            padding: 40px;
+            border-radius: 20px;
+            margin: 40px 0;
+            text-align: center;
+            border: 2px solid #9945FF;
+        }
+
+        .contract-title {
+            font-size: 1.5rem;
+            color: #14F195;
+            margin-bottom: 20px;
+        }
+
+        .contract-address {
+            font-family: 'Courier New', monospace;
+            font-size: 1rem;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px 25px;
+            border-radius: 10px;
+            display: inline-block;
+            color: #14F195;
+            word-break: break-all;
+            max-width: 100%;
+        }
+
+        .chinese-accent {
+            font-size: 6rem;
+            color: rgba(153, 69, 255, 0.2);
+            position: absolute;
+            font-weight: 900;
+            pointer-events: none;
+        }
+
+        .accent-1 { top: 10%; left: 5%; }
+        .accent-2 { top: 50%; right: 5%; }
+        .accent-3 { bottom: 10%; left: 10%; }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: #C8B5FF;
+            font-size: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            .subtitle { font-size: 1.2rem; }
+            .logo { font-size: 3rem; }
+            .cta-btn { padding: 15px 30px; font-size: 1rem; }
+            h2 { font-size: 2rem; }
+        }
+
+        .pulse {
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+    </style>
+</head>
+<body>
+    <div class="chinese-accent accent-1">快</div>
+    <div class="chinese-accent accent-2">手</div>
+    <div class="chinese-accent accent-3">笔</div>
+
+    <div class="container">
+        <header>
+            <div class="logo">✍️🚀</div>
+            <h1 class="glow">快手笔</h1>
+            <div class="subtitle">kuài shǒu bǐ</div>
+            <p class="tagline">The meme that Solana embraced. The project the community reclaimed. Born from a founder's vision, blessed by Anatoly himself, now powered by the people.</p>
+            
+            <div class="cta-group">
+                <a href="https://dexscreener.com/solana/egnf3dp85c7hzp6ynvlrdwqh6d8fk8ecesfzearkr7ac" target="_blank" class="cta-btn cta-primary">🔥 Trade on DEX</a>
+                <a href="#story" class="cta-btn cta-secondary">📖 Our Story</a>
+            </div>
+
+            <div style="margin-top: 60px; max-width: 600px; margin-left: auto; margin-right: auto;">
+                <blockquote class="twitter-tweet"><p lang="en" dir="ltr">I&#39;m proposing &quot;快手笔&quot; (kuài shǒu bǐ) as the Chinese name for <a href="https://twitter.com/solana?ref_src=twsrc%5Etfw">@solana</a><br><br>It means &quot;quick hand pen&quot;, representing Solana&#39;s speed &amp; cost <br>&quot;快手&quot; (quick hand) = speed &amp; efficiency <br>&quot;笔&quot; (pen) = A pen that writes transactions to the blockchain ledger<br><br>Solana is the home of <a href="https://twitter.com/MeteoraAG?ref_src=twsrc%5Etfw">@MeteoraAG</a>,… <a href="https://t.co/hIFXkh16B7">https://t.co/hIFXkh16B7</a></p>&mdash; Soju 燒酒 | Meteora (@0xSoju) <a href="https://twitter.com/0xSoju/status/1978302934258758017?ref_src=twsrc%5Etfw">October 15, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+            </div>
+        </header>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon">💰</div>
+                <div class="stat-value">1B</div>
+                <div class="stat-label">Total Supply</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">🔥</div>
+                <div class="stat-value">0%</div>
+                <div class="stat-label">Tax</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">🏛️</div>
+                <div class="stat-value">CTO</div>
+                <div class="stat-label">Community Takeover</div>
+            </div>
+        </div>
+
+        <div class="stat-card" style="max-width: 100%; margin: 30px 0;">
+            <div class="stat-icon">🤝</div>
+            <div class="stat-value">100%</div>
+            <div class="stat-label">Community Owned</div>
+        </div>
+
+        <div class="retweets-section" style="text-align: center; margin: 60px 0;">
+            <h3 style="font-size: 2rem; color: #14F195; margin-bottom: 30px;">👑 Blessed by Solana Royalty</h3>
+            <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; max-width: 1000px; margin: 0 auto;">
+                <img src="images/toly-retweet.png" alt="Anatoly Yakovenko Retweet" style="max-width: 450px; width: 100%; border-radius: 20px; border: 3px solid #14F195; box-shadow: 0 10px 30px rgba(20, 241, 149, 0.3);">
+                <img src="images/solana-retweet.png" alt="Solana Official Retweet" style="max-width: 450px; width: 100%; border-radius: 20px; border: 3px solid #9945FF; box-shadow: 0 10px 30px rgba(153, 69, 255, 0.3);">
+            </div>
+        </div>
+
+        <div class="story-section" id="story">
+            <div class="story-content">
+                <h2>✍️ The Legend of 快手笔</h2>
+                <p class="tagline" style="text-align: center;">From a simple proposal to a movement blessed by Solana's founder himself</p>
+                
+                <div class="story-timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-icon">🖋️</div>
+                        <div class="timeline-title">The Genesis</div>
+                        <div class="timeline-text">
+                            The founder of Meteora proposed "kuài shǒu bǐ" (快手笔) as the Chinese name for Solana. A stroke of genius that would change everything.
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-icon">👑</div>
+                        <div class="timeline-title">Anatoly's Blessing</div>
+                        <div class="timeline-text">
+                            Anatoly Yakovenko himself and the official Solana chain reposted the proposal. The crypto gods had spoken. Legitimacy achieved.
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-icon">🚀</div>
+                        <div class="timeline-title">The Ascent</div>
+                        <div class="timeline-text">
+                            The token exploded to a $1.2 million market cap. The community rallied. Believers assembled. The movement had begun.
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-icon">🔥</div>
+                        <div class="timeline-title">The Abandonment</div>
+                        <div class="timeline-text">
+                            The original developer walked away. But the community saw opportunity where others saw disaster. This was our moment.
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-icon">🤝</div>
+                        <div class="timeline-title">Community Takeover</div>
+                        <div class="timeline-text">
+                            We picked up the torch. CTO activated. No central authority. No single leader. Just believers in the meme that Solana blessed. The people's coin lives on.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="contract-section">
+            <div class="contract-title">📜 Official Contract Address</div>
+            <div class="contract-address">HM15KRPfsbmXr8PDfvikBmSqT9suT4x7ZatM3kF2pump</div>
+            <p style="margin-top: 20px; color: #C8B5FF;">Always verify the contract address before trading!</p>
+        </div>
+
+        <div style="text-align: center; margin: 60px 0;">
+            <h2 style="margin-bottom: 30px;">🌟 Join the Movement</h2>
+            <p class="tagline">This is more than a meme coin. It's a testament to community power, to taking ownership, to building something blessed by the very foundation of Solana itself.</p>
+            <div class="cta-group" style="margin-top: 40px;">
+                <a href="https://dexscreener.com/solana/egnf3dp85c7hzp6ynvlrdwqh6d8fk8ecesfzearkr7ac" target="_blank" class="cta-btn cta-primary pulse">Start Trading Now 🔥</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>快手笔 (kuài shǒu bǐ) - A Community-Driven Project on Solana</p>
+        <p style="margin-top: 10px; font-size: 0.9rem;">⚡ Built on Solana | 🏛️ Community Takeover | 🤝 For the People</p>
+    </footer>
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        const cards = document.querySelectorAll('.stat-card, .timeline-item');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '0';
+                    entry.target.style.transform = 'translateY(20px)';
+                    setTimeout(() => {
+                        entry.target.style.transition = 'all 0.6s ease';
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, 100);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        cards.forEach(card => observer.observe(card));
+    </script>
+</body>
+</html>
